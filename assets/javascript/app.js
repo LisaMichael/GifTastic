@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 // Initial array of giphy items to search on 
-let giphyTopic = ["puppies"];
+let giphyTopic = [];
 
 // Function for displaying movie data
 function renderButtons() {
@@ -35,9 +35,9 @@ $("#add-topic").on("click", function (event) {
   event.preventDefault();
 
   // This line will grab the text from the input box
-  let giphyTopic = $("#topic-input").val().trim();
-  // The movie from the textbox is then added to our array
-  giphyTopic.push(giph);
+  let giphy = $("#topic-input").val().trim();
+  // giphy inut from the textbox is then added to giphyTopic array
+  giphyTopic.push(giphy);
 
   // calling renderButtons which handles the processing of our movie array renderButtons();
   renderButtons();
