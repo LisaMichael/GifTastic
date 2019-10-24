@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-  // Initial array of giphy items to search on 
+  // Initial array of animal items to search on 
   let animalArray = ["dog"];
 
-  // Function for displaying movie data
+  // Function for rendering animal buttons
   function renderButtons() {
 
     // Deleting the previous buttons prior to adding new movie buttons
@@ -41,8 +41,8 @@ $(document).ready(function () {
 
     // calling renderButtons which handles the processing of our animal array renderButtons();
     renderButtons();
-
-    
+// emptyGifs();
+    animalClick();
   });
 
 
@@ -54,8 +54,24 @@ $(document).ready(function () {
 
   animalClick(); 
 
+
+  //empty previous gifs using empty() function
+
+function emptyGifs() {
+  
+  $("#gifs-appear-here").empty();
+  // $(".imageClass").remove();
+}
+
+// this function will display funny random animal giphys when you click on the specific animal button
+
+// this code was based upon wk 6 , activity 13, button-trigger AJAX
   function animalClick(){ 
+    
   $(".animal").on("click", function () {
+
+    emptyGifs();
+
     let animal = $(this).attr("data-critter");
     let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=aTWv3RucDbeLALuro6mLkPuHuTvdhzov&limit=10";
 
@@ -74,6 +90,7 @@ $(document).ready(function () {
           let p = $("<p>").text("Rating: " + rating);
 
           let animalImage = $("<img>");
+          animalImage.addClass("imageClass");
           animalImage.attr("src", results[i].images.fixed_height.url);
 
           gifDiv.prepend(p);
