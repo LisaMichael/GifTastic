@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>wk6Gif</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Giftastic</title>
   <!-- adding reset css file -->
   <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
 
@@ -23,22 +24,51 @@
 
 
 </head>
+
 <body>
 
-    <div class ="container">
-<br> 
-<br>
-      <!-- Movies will get dumped here -->
+  <div class="container">
+
+    <div id = "row"></div> <!--end div for row1-->
+    <div id = "row"></div> <!--end div for row2-->
+    <div id = "row"></div> <!--end div for row3-->
+    <br>
+    <br>
+    <!-- Animal buttons are placed here -->
     <div id="buttons-view"></div>
 
-    <form id="topic-form">
-      <label for="topic-input">Add a Topic button</label>
-      <input type="text" id="topic-input"><br>
+    <form id="animal-form">
+      <label for="animal-input">Add an animal</label>
+      <input type="text" id="animal-input"><br>
 
-      <!-- Button triggers new movie to be added -->
-      <input id="add-topic" type="submit" value="Submit">
+      <!-- submit button for new animal to be added -->
+      <input id="add-animal" type="submit" value="Submit">
     </form>
-    </div> <!----> 
-    
+    <div class = "row">
+        <div class="col-md-3" id="img0"></div>
+        <div class="col-md-3" id="img1"></div>
+        <div class="col-md-3" id="img2"></div>
+        <div class="col-md-3" id="blank4now">
+
+          
+        </div>
+    </div> <!--end div for row1-->
+    <div class = "row"><div class="col-md-3" id="img3"></div>
+    <div class="col-md-3" id="img4"></div>
+    <div class="col-md-3" id="img5"></div>
+    <div class="col-md-3" id="img6"></div>
+    <divc lass = "col-md-3" id="blank"></div>
+  </div> <!--end div for row2-->
+    <div class = "row">
+        <div class="col-md-3" id="img7"></div>
+        <div class="col-md-3" id="img8"></div>
+        <div class="col-md-3" id="img9"></div>
+        <div class="col-md-3" id="blank"></div>
+    </div> <!--end div for row3-->
+    <div id="gifs-appear-here">
+    </div>
+  </div> <!-- end of div container -->
+
 </body>
+
 </html>
