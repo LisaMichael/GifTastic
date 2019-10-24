@@ -1,8 +1,15 @@
 body {
     font-weight: bolder;
+    background-color: lightgray;
 }
 
 .animal {
     background-color: turquoise;
     margin: 5px;
+    color: #ffffff;
+    font-weight: bolder;
+}
+
+#animal-form {
+    text-align: right;
 }
