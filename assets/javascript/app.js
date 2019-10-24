@@ -10,14 +10,14 @@ $(document).ready(function () {
     // (this is necessary otherwise we will have repeat buttons)
     $("#buttons-view").empty();
 
-    // Looping through the array of movies
+    // Looping through the array of animals
     for (let i = 0; i < animalArray.length; i++) {
 
-      // Then dynamicaly generating buttons for each movie in the array.
-      // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+      // Then dynamicaly generating buttons for each animal in the array.
+      
       let a = $("<button>");
       // Adding animal and btn class
-      a.addClass("animal");
+      a.addClass("animal btn");
       // Adding a data-attribute with a value of the movie at index i
       a.attr("data-critter", animalArray[i]);
       // Providing the button's text with a value of the movie at index i
