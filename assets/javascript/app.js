@@ -39,8 +39,9 @@ $(document).ready(function () {
     // animal input from the textbox is then added to animalArray array
     animalArray.push(animal);
 
-    // calling renderButtons which handles the processing of our animal array renderButtons();
+    // calling renderButtons which handles the processing of animal array renderButtons();
     renderButtons();
+
 // emptyGifs();
     animalClick();
   });
@@ -63,16 +64,21 @@ function emptyGifs() {
   // $(".imageClass").remove();
 }
 
-// this function will display funny random animal giphys when you click on the specific animal button
+// this function will display funny animal giphys when you click on the specific animal button
 
-// this code was based upon wk 6 , activity 13, button-trigger AJAX
+
   function animalClick(){ 
     
+    // this code was based upon wk 6 , activity 13, button-trigger AJAX
   $(".animal").on("click", function () {
 
+
+    // empty the previous gifs
     emptyGifs();
 
     let animal = $(this).attr("data-critter");
+
+    // api query url 
     let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=aTWv3RucDbeLALuro6mLkPuHuTvdhzov&limit=10";
 
     $.ajax({
@@ -80,6 +86,7 @@ function emptyGifs() {
       method: "GET"
     })
       .then(function (response) {
+        console.log(response);
         let results = response.data;
 
         for (let i = 0; i < results.length; i++) {
@@ -93,10 +100,14 @@ function emptyGifs() {
           animalImage.addClass("imageClass");
           animalImage.attr("src", results[i].images.fixed_height.url);
 
-          gifDiv.prepend(p);
-          gifDiv.prepend(animalImage);
+          animalImage.attr("data-still", results[i].images.original_still.url);
+          animalImage.attr("data-animate", results[i].images.original.url);
+          animalImage.attr("data-state", "still");
 
-          $("#gifs-appear-here").prepend(gifDiv);
+          gifDiv.append(p);
+          gifDiv.append(animalImage);
+          
+                    $("#img"+i).append(gifDiv);
         }
       });
   });
