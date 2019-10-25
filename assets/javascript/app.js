@@ -14,7 +14,7 @@ $(document).ready(function () {
     for (let i = 0; i < animalArray.length; i++) {
 
       // Then dynamicaly generating buttons for each animal in the array.
-      
+
       let a = $("<button>");
       // Adding animal and btn class
       a.addClass("animal btn");
@@ -42,77 +42,78 @@ $(document).ready(function () {
     // calling renderButtons which handles the processing of animal array renderButtons();
     renderButtons();
 
-// emptyGifs();
+    // emptyGifs();
     animalClick();
   });
 
 
- 
+
 
 
   // Calling the renderButtons function at least once to display the initial list of movies
   renderButtons();
 
-  animalClick(); 
+  animalClick();
 
 
   //empty previous gifs using empty() function
 
-function emptyGifs() {
-  
-  $("#gifs-appear-here").empty();
-  // $(".imageClass").remove();
-}
+  function emptyGifs() {
 
-// this function will display funny animal giphys when you click on the specific animal button
-
-
-  function animalClick(){ 
+    // $("#gifs-appear-here").empty();
     
+    $(".col-md-3").empty();
+  }
+
+  // this function will display funny animal giphys when you click on the specific animal button
+
+
+  function animalClick() {
+
     // this code was based upon wk 6 , activity 13, button-trigger AJAX
-  $(".animal").on("click", function () {
+    $(".animal").on("click", function () {
 
 
-    // empty the previous gifs
-    emptyGifs();
+      // empty the previous gifs
+      emptyGifs();
 
-    let animal = $(this).attr("data-critter");
+      let animal = $(this).attr("data-critter");
 
-    // api query url 
-    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=aTWv3RucDbeLALuro6mLkPuHuTvdhzov&limit=10";
+      // api query url 
+      let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=aTWv3RucDbeLALuro6mLkPuHuTvdhzov&limit=10";
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      .then(function (response) {
-        console.log(response);
-        let results = response.data;
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function (response) {
+          console.log(response);
+          let results = response.data;
 
-        for (let i = 0; i < results.length; i++) {
-          let gifDiv = $("<div>");
+          for (let i = 0; i < results.length; i++) {
+            let gifDiv = $("<div>");
 
-          let rating = results[i].rating;
+            let rating = results[i].rating;
 
-          let p = $("<p>").text("Rating: " + rating);
+            let p = $("<p>").text("Rating: " + rating);
 
-          let animalImage = $("<img>");
-          animalImage.addClass("imageClass");
-          animalImage.attr("src", results[i].images.fixed_height.url);
+            let animalImage = $("<img>");
+            animalImage.addClass("imageClass");
+            animalImage.attr("src", results[i].images.fixed_height.url);
 
-          animalImage.attr("data-still", results[i].images.original_still.url);
-          animalImage.attr("data-animate", results[i].images.original.url);
-          animalImage.attr("data-state", "still");
+            animalImage.attr("data-still", results[i].images.original_still.url);
+            animalImage.attr("data-animate", results[i].images.original.url);
+            animalImage.attr("data-state", "still");
 
-          gifDiv.append(p);
-          gifDiv.append(animalImage);
-          
-                    $("#img"+i).append(gifDiv);
-        }
-      });
-  });
+            gifDiv.append(p);
+            gifDiv.append(animalImage);
 
-}  
-// end of animalClick function ()
+            $("#img" + i).append(gifDiv);
+          }
+        });
+    });
+
+  }
+  // end of animalClick function ()
 
 });
