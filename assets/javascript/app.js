@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   // Initial array of animal items to search on 
-  let animalArray = ["dog", "ant", "skunk"];
+  let animalArray = ["puppies", "ant", "skunk"];
 
   // Function for rendering animal buttons
   function renderButtons() {
@@ -38,15 +38,17 @@ $(document).ready(function () {
     let animal = $("#animal-input").val().trim();
     // animal input from the textbox is then added to animalArray array
     animalArray.push(animal);
-
+    
     // calling renderButtons which handles the processing of animal array renderButtons();
     renderButtons();
 
 
-    // blank out the input field after you hit the submit button
+    // blank out the text of input field after you hit the submit button
     //I referenced: https://stackoverflow.com/questions/20416803/how-do-i-clear-the-previous-text-field-value-after-submitting-the-form-with-out
 
-    $('#animal-form').children('input').val('');
+    $('#animal-input').text('input').val('')
+
+
     // emptyGifs();
     animalClick();
   });
