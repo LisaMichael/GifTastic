@@ -18,9 +18,11 @@ $(document).ready(function () {
       let a = $("<button>");
       // Adding animal and btn class
       a.addClass("animal btn");
-      // Adding a data-attribute with a value of the movie at index i
+
+      // Adding a data-attribute with a value of the animal at index i
       a.attr("data-critter", animalArray[i]);
-      // Providing the button's text with a value of the movie at index i
+
+      // Providing the button's text with a value of the animal at index i
       a.text(animalArray[i]);
       // Adding the button to the HTML
       $("#buttons-view").append(a);
@@ -38,7 +40,7 @@ $(document).ready(function () {
     let animal = $("#animal-input").val().trim();
     // animal input from the textbox is then added to animalArray array
     animalArray.push(animal);
-    
+
     // calling renderButtons which handles the processing of animal array renderButtons();
     renderButtons();
 
@@ -54,17 +56,17 @@ $(document).ready(function () {
   });
 
 
-  // Calling the renderButtons function at least once to display the initial list of movies
+  // Calling the renderButtons function at least once to display the initial animal array
   renderButtons();
 
   animalClick();
 
 
-  
+
   let animate = $(this).attr("data-animate");
   let still = $(this).attr("data-still");
 
-  
+
   //empty  gifs using empty() function
 
   function emptyGifs() {
@@ -77,11 +79,15 @@ $(document).ready(function () {
   function animalClick() {
 
     // this code was based upon wk 6 , activity 13, button-trigger AJAX
+    // on click function for the animal class
     $(".animal").on("click", function () {
 
 
       // empty the previous gifs
       emptyGifs();
+
+      // extract the data-critter attributed created earlier
+      //we use this in our query search
 
       let animal = $(this).attr("data-critter");
 
@@ -93,14 +99,19 @@ $(document).ready(function () {
         method: "GET"
       })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           let results = response.data;
 
+          // this for loop we loop through the JSON out 
+          // to create divs, obtain ratings, giphy image and urls
           for (let i = 0; i < results.length; i++) {
+
+           // create a div for my images of the specific button 
             let gifDiv = $("<div>");
 
             let rating = results[i].rating;
 
+            //create a paragraph element for giphy rating 
             let p = $("<p>").text("Rating: " + rating);
 
             let animalImage = $("<img>");
@@ -126,28 +137,30 @@ $(document).ready(function () {
   }
   // end of animalClick function ()
 
-  
 
-  function animateOrStill(){
+
+  function animateOrStill() {
 
     // I referenced Gem homework for the syntax of using $(this)
-		let state = $(this).attr("data-state");
-		let animateGiphy = $(this).attr("data-animate");
-		let stillGiphy = $(this).attr("data-still");
+    let state = $(this).attr("data-state");
+    let animateGiphy = $(this).attr("data-animate");
+    let stillGiphy = $(this).attr("data-still");
 
-		if (state === "still") {
-			$(this).attr("src", animateGiphy);
-			$(this).attr("data-state", "animate");
-		}
 
-		else if (state === "animate") {
-			$(this).attr("src", stillGiphy);
-			$(this).attr("data-state", "still");
-		}
-	}
+    // this is the logic to determine if the giphy image is a still image or animate
+    if (state === "still") {
+      $(this).attr("src", animateGiphy);
+      $(this).attr("data-state", "animate");
+    }
+
+    else if (state === "animate") {
+      $(this).attr("src", stillGiphy);
+      $(this).attr("data-state", "still");
+    }
+  }
 
   // i referenced https://stackoverflow.com/questions/17605296/document-onclick-not-working
   // to obtain the syntax and explanation: 
-  // so the document is listening for click on class "image-fluid", and run aniate or still function
+  // so the document is listening for click on class "image-fluid", and run animate or still function
   $(document).on("click", ".image-fluid", animateOrStill);
 });
