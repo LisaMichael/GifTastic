@@ -139,8 +139,8 @@ $(document).ready(function () {
 
 
 
-  function animateOrStill() {
-
+  //function animateOrStill() {
+$(document).on("click", ".image-fluid",function(){
     // I referenced Gem homework for the syntax of using $(this)
     let state = $(this).attr("data-state");
     let animateGiphy = $(this).attr("data-animate");
@@ -157,10 +157,10 @@ $(document).ready(function () {
       $(this).attr("src", stillGiphy);
       $(this).attr("data-state", "still");
     }
-  }
+  });
 
   // i referenced https://stackoverflow.com/questions/17605296/document-onclick-not-working
   // to obtain the syntax and explanation: 
   // so the document is listening for click on class "image-fluid", and run animate or still function
-  $(document).on("click", ".image-fluid", animateOrStill);
+ //$(document).on("click", ".image-fluid", animateOrStill);
 });
